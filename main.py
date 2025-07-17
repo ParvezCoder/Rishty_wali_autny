@@ -89,7 +89,7 @@ st.markdown("Enter your details and requirements to find a perfect match!")
 # Step 1: Get User Info
 st.subheader("🧍‍♂️ Step 1: Your Information")
 user_name = st.text_input("Your Name")
-user_gender = st.selectbox("Your Gender", ["Male", "Female"])
+
 user_whatsapp = st.text_input("WhatsApp Number (with country code)", placeholder="+923001234567")
 # Step 2: Match Requirements
 st.subheader("🔍 Step 2: Your Match Requirements")
