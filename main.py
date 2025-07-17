@@ -83,8 +83,18 @@ agent = Agent(
 st.set_page_config(page_title="🤝 Rishtey Wali Auntie", layout="centered")
 
 # UI Layout
-st.title("💍 Rishtey Wali Auntie")
-st.markdown("Enter your details and requirements to find a perfect match!")
+# Set Streamlit UI configuration
+st.set_page_config(page_title="🤝 Rishtey Wali Auntie", layout="centered")
+
+# UI Layout with image on right and text on left
+left_col, right_col = st.columns([2, 1])  # 2:1 ratio for better spacing
+
+with left_col:
+    st.markdown("<h2>💍 Rishtey Wali Auntie</h2>", unsafe_allow_html=True)
+
+with right_col:
+    st.image("marraige.png", use_container_width=True)
+
 
 # Step 1: Get User Info
 st.subheader("🧍‍♂️ Step 1: Your Information")
@@ -98,11 +108,12 @@ required_age = st.number_input("Minimum Age", min_value=18, max_value=100, step=
 job_required = st.selectbox("Should they have a job?", ["Doesn't Matter", "Yes", "No", ])
 car_required = st.selectbox("Should they have a car?", ["Doesn't Matter", "Yes", "No", ])
 min_balance = st.number_input("Minimum Bank Balance (PKR)", min_value=0)
-
+result_formate = st.text_input("Aap ko result kis format mein chahiye?  Number-wise/ Tabular form / Bullet points")
 # Final user query string for Auntie
 user_input = (
     f"Show me {looking_for_gender.lower()} rishtas where age >= {required_age}, "
-    f"job = {job_required}, car = {car_required}, bank balance >= {min_balance}, result in should be tabular form"
+    f"job = {job_required}, car = {car_required}, bank balance >= {min_balance}, "
+    f"job = {result_formate}, "
 )
 
 
