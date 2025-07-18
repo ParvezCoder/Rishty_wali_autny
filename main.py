@@ -4,7 +4,6 @@ import asyncio
 import requests
 from dotenv import load_dotenv
 from agents import Agent, Runner, OpenAIChatCompletionsModel, AsyncOpenAI, function_tool
-
 # Load environment variables
 load_dotenv()
 gemini_api_key = os.getenv("GEMINI_API_KEY")
@@ -12,18 +11,15 @@ gemini_api_key = os.getenv("GEMINI_API_KEY")
 if not gemini_api_key:
     st.error("❌ API key missing. Please set your GEMINI_API_KEY in .env file.")
     st.stop()
-
 # Setup external client and model
 external_client = AsyncOpenAI(
     base_url="https://generativelanguage.googleapis.com/v1beta/openai/",
     api_key=gemini_api_key
 )
-
 model = OpenAIChatCompletionsModel(
     model="gemini-2.5-flash",
     openai_client=external_client
 )
-
 # Tool function: Male users
 @function_tool
 def get_user_data_male(min_age: int, job_required: str = "Doesn't Matter", car_required: str = "Doesn't Matter", min_balance: int = 0) -> list[dict]:
@@ -108,12 +104,13 @@ required_age = st.number_input("Minimum Age", min_value=18, max_value=100, step=
 job_required = st.selectbox("Should they have a job?", ["Doesn't Matter", "Yes", "No", ])
 car_required = st.selectbox("Should they have a car?", ["Doesn't Matter", "Yes", "No", ])
 min_balance = st.number_input("Minimum Bank Balance (PKR)", min_value=0)
-result_formate = st.text_input("Aap ko result kis format mein chahiye?  Number-wise/ Tabular form / Bullet points")
+result_formate = st.selectbox("Aap ko result kis format mein chahiye?", [",", "Result Should be in Tabular formate", "Result Should be in Number-wise, 1,2,3... ", "Result Should be in Bullet formate"])
+# result_formate = st.text_input("Aap ko result kis format mein chahiye?  Number-wise/ Tabular form / Bullet points")
 # Final user query string for Auntie
 user_input = (
     f"Show me {looking_for_gender.lower()} rishtas where age >= {required_age}, "
     f"job = {job_required}, car = {car_required}, bank balance >= {min_balance}, "
-    f"job = {result_formate}, "
+    f"{result_formate}, "
 )
 
 
