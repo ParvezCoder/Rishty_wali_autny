@@ -104,7 +104,7 @@ required_age = st.number_input("Minimum Age", min_value=18, max_value=100, step=
 job_required = st.selectbox("Should they have a job?", ["Doesn't Matter", "Yes", "No", ])
 car_required = st.selectbox("Should they have a car?", ["Doesn't Matter", "Yes", "No", ])
 min_balance = st.number_input("Minimum Bank Balance (PKR)", min_value=0)
-result_formate = st.selectbox("Aap ko result kis format mein chahiye?", [",", "Result Should be in Tabular formate", "Result Should be in Number-wise, 1,2,3... ", "Result Should be in Bullet formate"])
+result_formate = st.selectbox("Aap ko result kis format mein chahiye?", [" ", "Result Should be in Tabular formate", "Result Should be in Number-wise, 1,2,3... ", "Result Should be in Bullet formate"])
 # result_formate = st.text_input("Aap ko result kis format mein chahiye?  Number-wise/ Tabular form / Bullet points")
 # Final user query string for Auntie
 user_input = (
